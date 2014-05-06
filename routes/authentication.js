@@ -16,8 +16,9 @@ router.post('/authentication', function(req, res) {
     var collection = db.get('user');
     collection.find({'user' : login, 'pass': pass},{},function(e,docs){
         if (docs.length == 0) {
-            console.log("User doesn't exist");
+            res.render('error-custom', {message: 'User doesnt exist'});
         } else {
+            res.render('index');
             console.log(docs);
         }
     });
