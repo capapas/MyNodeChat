@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(name="login", action="validateInscription", method="post")
+    div
+      label(for="user") Username
+      input( type="text", name="username", id="user")
+
+    div
+      label(for="pass") Password
+      input(id="pass", type="password", name="pass")
+
+    div
+      label(for="passconfirm") Confirm password
+      input(id="passconfirm", type="password", name="pass_conf")
+    div
+      input(type="submit", value="Inscription")
