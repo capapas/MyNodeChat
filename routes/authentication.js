@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 
 /* POST login form. */
 router.post('/authentication', function(req, res) {
-
+nodes.session.set();
     var login = req.body.user;
     var pass = req.body.pass;
 

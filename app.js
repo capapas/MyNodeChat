@@ -2,16 +2,23 @@ var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var authenticate = require('./routes/authentication');
 
+var config  = require('./conf/config.js');
+var my = require('./db/My.js');
+
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/chat');
+var db = monk(config.mongo.host + ':' + config.mongo.port + '/' + config.mongo.db);
+
+async = require("async");
+
+my.getService("/user-service.js");
 
 var app = express();
 
@@ -23,7 +30,8 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+//app.use(cookieParser());
+//app.use(express.session({secret: "someddvdsg"}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req,res,next){
