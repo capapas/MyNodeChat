@@ -63,7 +63,7 @@ router.post('/validateInscription', function (req, res) {
         if (docs.length > 0) {
             res.render('error-custom', {message: 'Username already exist'});
         }
-        
+
         var colUser = {
             "user" : login,
             "pass" : pass,

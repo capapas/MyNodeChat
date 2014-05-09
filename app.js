@@ -20,22 +20,17 @@ var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
-
-
 var debug = require('debug')('my-application');
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
-
-
 
 // Add var in application ********************************************************************************* 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.static(__dirname + '/public'));
- 
- 
+
 app.use(function(req,res,next){
     req.db = db;
     req.session = session;
@@ -57,17 +52,22 @@ console.log("Listening on port " + port);
 
 io.sockets.on('connection', function (socket) {
     socket.emit('message', { message: 'welcome to the chat' });
+    
+    db.get(config.mongo.table.collectionChat).find({}, {}, function (err, items) {
+
+        var i;
+        for (i = 0; i < items.length; i++) {
+            
+            io.sockets.emit('message', items[i]);
+        }
+    });
+    
     socket.on('send', function (data) {
 
-        console.log(data);
-
         data.date = new Date();
-
         if (data.username) {
             db.get(config.mongo.table.collectionChat).insert(data, function(){});
         }        
-        
-        
         io.sockets.emit('message', data);
     });
 });

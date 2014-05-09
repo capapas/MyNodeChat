@@ -71,7 +71,7 @@ router.post('/validateInscription', function (req, res) {
         }
             
         collection.insert(colUser, function(){
-            res.redirect('chat')
+            res.render('chat')
         });
     });  
 });

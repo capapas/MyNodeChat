@@ -16,7 +16,7 @@ window.onload = function() {
             if (data.username) {
                 html += '<b>' + data.username + '</b> : ';
             }
-                html += data.message + '<br />';
+            html += data.message + '<br />';
             content.innerHTML += html;
             content.scrollTop = content.scrollHeight;
         } else {

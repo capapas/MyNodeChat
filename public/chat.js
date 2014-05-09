@@ -10,7 +10,6 @@ window.onload = function() {
     
  
     socket.on('message', function (data) {
-    console.log(data);
         if(data.message || data.username) {
             var html = '';
             if (data.username) {
