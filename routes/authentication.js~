@@ -70,7 +70,7 @@ router.post('/validateInscription', function (req, res) {
             "insc" : new Date()
         }
             
-        collection.insert(colUser, function(){
+        collection..insert(colUser, function(){
             res.render('chat')
         });
     });  

@@ -1,14 +1,15 @@
-/**
- * @type {{mongo: {host: string}}}
- */
 var config = {
     "mongo" : {
         "host" : "localhost",
         "port" : "27017",
-        "db" : "chat"
+        "db" : "chat",
+        "table" : {
+            "collectionUser": "user",
+            "collectionChat": "chat"
+        }
     },
-    "socket" : {
-        "port":"3001",
+    "server" : {
+        "port":"3000",
         "host" : "localhost"
     },
     "session" : {
