@@ -4,6 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var ent = require('ent');
 
 var authenticate = require('./routes/authentication');
 
@@ -64,6 +65,7 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('send', function (data) {
 
+        data.message =  ent.encode(data.message);
         data.date = new Date();
         if (data.username) {
             db.get(config.mongo.table.collectionChat).insert(data, function(){});
