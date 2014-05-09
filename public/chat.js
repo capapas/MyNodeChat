@@ -2,7 +2,7 @@ window.onload = function() {
  
     var messages = [];
     var nicknames = [];
-    var socket = io.connect('http://10.66.126.240:3000');
+    var socket = io.connect('http://localhost:3000');
     var field = document.getElementById("field");
     var name = document.getElementById("name");
     var sendButton = document.getElementById("send");
@@ -13,8 +13,10 @@ window.onload = function() {
     console.log(data);
         if(data.message || data.username) {
             var html = '';
+            if (data.username) {
                 html += '<b>' + data.username + '</b> : ';
-                html += data.message + '<br />';
+            }
+            html += data.message + '<br />';
             content.innerHTML += html;
             content.scrollTop = content.scrollHeight;
         } else {
